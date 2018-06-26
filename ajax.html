@@ -1,0 +1,40 @@
+<!DOCTYPE html>  
+  <html>  
+   <head>  
+     <title>Jquery Ajax : Handling Error using $.ajax() Method </title>  
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+     <script> 
+   $(document).ready(function(){
+     $("button").click(function(){
+       $.ajax({
+         type: "GET",
+         url: "proces.php", // no such file exists
+         data: {color:"Red"},  
+         success:callback,
+        timeout: 10,  //time out of just 20 milliseconds
+         error: err
+      });      
+   });   
+ });
+      function callback(data)
+       {
+        $("div").text(data);
+       }
+       
+       function err(xhr, reason, ex)
+       {
+        $("div").text(reason + "-" + xhr.status + " ie " + xhr.statusText);
+       }  
+   </script>
+   <style>
+     body{font-family:Verdana; color:#444;}
+     div{border:5px solid #fa4b2a;padding:10px;}
+   </style>
+ </head>  
+      <body>
+        <h2>Select The Color (Red/Blue) using $.ajax()</h2>
+ 
+<div></div><br>
+        <button>Get Data Using $.ajax()</button> 
+       </body>
+</html>
